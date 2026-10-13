@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    p5ublic static void main(String[] args) throws IOException {
 
         Socket socket = new Socket("10.22.10.20", 3000);
 
@@ -17,10 +17,10 @@ public class Main {
 
         Scanner tastiera = new Scanner(System.in);
         
-        System.out.println("Connesso al server!");
+        System.out.println("Connesso al server");
 
         while (true) {
-            System.out.print("Inserisci l'operazione (es. 5+3) o 'exit' per uscire: ");
+            System.out.print("Inserisci l'operazione o 'exit' per uscire: ");
             String inputUtente = tastiera.nextLine();
 
             out.println(inputUtente);
@@ -45,6 +45,6 @@ public class Main {
         in.close();
         socket.close();
         
-        System.out.println("Tutte le risorse sono state chiuse correttamente.");
+        System.out.println("Tutte le risorse sono state chiuse.");
     }
 }
