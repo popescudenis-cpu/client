@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Main {
-    p5ublic static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         Socket socket = new Socket("10.22.10.20", 3000);
 
