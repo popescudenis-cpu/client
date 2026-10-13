@@ -8,29 +8,43 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
 
-
-        Socket socket = new Socket("127.0.0.1", 3000);
+        Socket socket = new Socket("10.22.10.20", 3000);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
         Scanner tastiera = new Scanner(System.in);
+        
+        System.out.println("Connesso al server!");
 
         while (true) {
-            System.out.print("Scrivi qualcosa: ");
-            String testoUtente= tastiera.nextLine();
+            System.out.print("Inserisci l'operazione (es. 5+3) o 'exit' per uscire: ");
+            String inputUtente = tastiera.nextLine();
 
-            out.println(testoUtente);
+            out.println(inputUtente);
 
-            if (testoUtente.equals("exit")) {
-                System.out.println("CLIENT: Chiudo l'applicazione.");
+            if (inputUtente.equalsIgnoreCase("exit")) {
+                System.out.println("Uscita dal programma...");
                 break;
             }
 
-            String risposta = in.readLine();
-            System.out.println("Risposta del server: " + risposta);
+            String rispostaServer = in.readLine();
+            
+            if (rispostaServer == null) {
+                System.out.println("Il server ha chiuso la connessione.");
+                break;
+            }
+
+            System.out.println("Risposta dal server: " + rispostaServer);
         }
+
+        tastiera.close();
+        out.close();
+        in.close();
+        socket.close();
+        
+        System.out.println("Tutte le risorse sono state chiuse correttamente.");
     }
 }
